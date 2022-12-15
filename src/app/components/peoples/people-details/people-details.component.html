@@ -1,0 +1,58 @@
+<app-loading *ngIf="people == undefined"></app-loading>
+
+<div class="vertical-details" *ngIf="people != undefined">
+  <div>
+    <h2>{{ people.name }}</h2>
+    <h4>Gender : {{ people.gender }}</h4>
+    <h4>Birth year : {{ people.birth_year }}</h4>
+    <h4>
+      Homeworld :
+      <span
+        [routerLink]="'/planets/' + homeworldId"
+        class="bloc"
+        style="display: inline"
+        >{{ homeworld?.name }}</span
+      >
+    </h4>
+    <h4>Eye color : {{ people.eye_color }}</h4>
+    <h4>Hair color : {{ people.hair_color }}</h4>
+    <h4>Skin color : {{ people.skin_color }}</h4>
+    <h4>Height : {{ people.height }}</h4>
+    <h4>Mass : {{ people.mass }}</h4>
+  </div>
+
+  <hr />
+
+  <div>
+    <app-loading *ngIf="relationsLoading != 0"></app-loading>
+
+    <div class="relations" *ngIf="relationsLoading == 0">
+      <div class="relation">
+        <h4>Films</h4>
+        <app-film-summary *ngFor="let e of films" [film]="e">
+        </app-film-summary>
+      </div>
+      <div class="relation">
+        <h4>Species</h4>
+        <app-specie-summary
+          *ngFor="let e of species"
+          [specie]="e"
+        ></app-specie-summary>
+      </div>
+      <div class="relation">
+        <h4>Starship</h4>
+        <app-starship-summary
+          *ngFor="let e of starship"
+          [starship]="e"
+        ></app-starship-summary>
+      </div>
+      <div class="relation">
+        <h4>Vehicles</h4>
+        <app-vehicle-summary
+          *ngFor="let e of vehicles"
+          [vehicle]="e"
+        ></app-vehicle-summary>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+<app-loading *ngIf="planets == undefined"></app-loading>
+
+<div class="planets">
+  <div
+    *ngFor="let planet of planets"
+    class="bloc spaced"
+    routerLink="{{ getId(planet.url) }}"
+  >
+    <h2>{{ planet.name }}</h2>
+  </div>
+</div>

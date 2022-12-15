@@ -1,0 +1,15 @@
+<app-loading *ngIf="films == undefined"></app-loading>
+
+<div class="films">
+  <div
+    *ngFor="let film of films"
+    class="bloc spaced"
+    routerLink="{{ getId(film.url) }}"
+  >
+    <h2>{{ film.title }} - Episode {{ film.episode_id }}</h2>
+    <h4>Director : {{ film.director }}</h4>
+    <h4>Producer : {{ film.producer }}</h4>
+    <h4>Release date : {{ film.release_date }}</h4>
+    <p>{{ film.opening_crawl }}</p>
+  </div>
+</div>

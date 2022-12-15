@@ -1,0 +1,45 @@
+<app-loading *ngIf="specie == undefined"></app-loading>
+
+<div class="details" *ngIf="specie != undefined">
+  <div>
+    <h2>{{ specie.name }}</h2>
+    <h4>Classification : {{ specie.classification }}</h4>
+    <h4>Designation : {{ specie.designation }}</h4>
+    <h4>Average height : {{ specie.average_height }}</h4>
+    <h4>Average lifespan : {{ specie.average_lifespan }}</h4>
+    <h4>Eye colors : {{ specie.eye_colors }}</h4>
+    <h4>Hair colors : {{ specie.hair_colors }}</h4>
+    <h4>Skin colors : {{ specie.skin_colors }}</h4>
+    <h4>Language : {{ specie.language }}</h4>
+    <h4>
+      Homeworld :
+      <span
+        [routerLink]="'/planets/' + homeworldId"
+        class="bloc"
+        style="display: inline"
+        >{{ homeworld?.name }}</span
+      >
+    </h4>
+  </div>
+
+  <hr />
+
+  <div>
+    <app-loading *ngIf="relationsLoading != 0"></app-loading>
+
+    <div class="relations" *ngIf="relationsLoading == 0">
+      <div class="relation">
+        <h4>Films</h4>
+        <app-film-summary *ngFor="let e of films" [film]="e">
+        </app-film-summary>
+      </div>
+      <div class="relation">
+        <h4>Peoples</h4>
+        <app-people-summary
+          *ngFor="let e of peoples"
+          [people]="e"
+        ></app-people-summary>
+      </div>
+    </div>
+  </div>
+</div>

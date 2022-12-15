@@ -1,0 +1,11 @@
+<app-loading *ngIf="species == undefined"></app-loading>
+
+<div class="peoples">
+  <div
+    *ngFor="let specie of species"
+    class="bloc"
+    routerLink="{{ getId(specie.url) }}"
+  >
+    <h2>{{ specie.name }}</h2>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+<app-loading *ngIf="peoples == undefined"></app-loading>
+
+<div>
+  <div
+    *ngFor="let people of peoples"
+    class="bloc"
+    routerLink="{{ getId(people.url) }}"
+  >
+    <h2>{{ people.name }}</h2>
+  </div>
+</div>

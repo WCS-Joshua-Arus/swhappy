@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+@import "stars.css";
+@import "theme.css";
+
+html,
+body,
+app-root {
+  min-height: 100vh;
+  margin: 0;
+}
+
+app-root {
+  display: flex;
+  flex-direction: column;
+  font-family: "lato", sans-serif;
+  color: #fff;
+  letter-spacing: 3px;
+}

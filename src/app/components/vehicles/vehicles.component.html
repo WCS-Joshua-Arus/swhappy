@@ -1,0 +1,11 @@
+<app-loading *ngIf="vehicles == undefined"></app-loading>
+
+<div>
+  <div
+    *ngFor="let vehicle of vehicles"
+    class="bloc"
+    routerLink="{{ getId(vehicle.url) }}"
+  >
+    <h2>{{ vehicle.name }}</h2>
+  </div>
+</div>

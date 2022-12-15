@@ -1,0 +1,38 @@
+<app-loading *ngIf="vehicle == undefined"></app-loading>
+
+<div class="details" *ngIf="vehicle != undefined">
+  <div>
+    <h2>{{ vehicle.name }}</h2>
+    <h4>Model : {{ vehicle.model }}</h4>
+    <h4>vehicle class : {{ vehicle.vehicle_class }}</h4>
+    <h4>Manufacturer : {{ vehicle.manufacturer }}</h4>
+    <h4>Cost in credits : {{ vehicle.cost_in_credits }}</h4>
+    <h4>Length : {{ vehicle.length }}</h4>
+    <h4>Crew : {{ vehicle.crew }}</h4>
+    <h4>Passengers : {{ vehicle.passengers }}</h4>
+    <h4>Max atmosphering speed : {{ vehicle.max_atmosphering_speed }}</h4>
+    <h4>Cargo capacity : {{ vehicle.cargo_capacity }}</h4>
+    <h4>Consumables : {{ vehicle.consumables }}</h4>
+  </div>
+
+  <hr />
+
+  <div>
+    <app-loading *ngIf="relationsLoading != 0"></app-loading>
+
+    <div class="relations" *ngIf="relationsLoading == 0">
+      <div class="relation">
+        <h4>Films</h4>
+        <app-film-summary *ngFor="let e of films" [film]="e">
+        </app-film-summary>
+      </div>
+      <div class="relation">
+        <h4>Pilots</h4>
+        <app-people-summary
+          *ngFor="let e of peoples"
+          [people]="e"
+        ></app-people-summary>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+<app-loading *ngIf="starship == undefined"></app-loading>
+
+<div class="details" *ngIf="starship != undefined">
+  <div>
+    <h2>{{ starship.name }}</h2>
+    <h4>Model : {{ starship.model }}</h4>
+    <h4>Starship class : {{ starship.starship_class }}</h4>
+    <h4>Manufacturer : {{ starship.manufacturer }}</h4>
+    <h4>Cost in credits : {{ starship.cost_in_credits }}</h4>
+    <h4>Length : {{ starship.length }}</h4>
+    <h4>Crew : {{ starship.crew }}</h4>
+    <h4>Passengers : {{ starship.passengers }}</h4>
+    <h4>Max atmosphering speed : {{ starship.max_atmosphering_speed }}</h4>
+    <h4>Hyperdrive rating : {{ starship.hyperdrive_rating }}</h4>
+    <h4>MGLT : {{ starship.MGLT }}</h4>
+    <h4>Cargo capacity : {{ starship.cargo_capacity }}</h4>
+    <h4>Consumables : {{ starship.consumables }}</h4>
+  </div>
+
+  <hr />
+
+  <div>
+    <app-loading *ngIf="relationsLoading != 0"></app-loading>
+
+    <div class="relations" *ngIf="relationsLoading == 0">
+      <div class="relation">
+        <h4>Films</h4>
+        <app-film-summary *ngFor="let e of films" [film]="e">
+        </app-film-summary>
+      </div>
+      <div class="relation">
+        <h4>Pilots</h4>
+        <app-people-summary
+          *ngFor="let e of peoples"
+          [people]="e"
+        ></app-people-summary>
+      </div>
+    </div>
+  </div>
+</div>

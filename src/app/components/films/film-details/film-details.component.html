@@ -1,0 +1,49 @@
+<app-loading *ngIf="film == undefined"></app-loading>
+
+<div *ngIf="film != undefined">
+  <h2>{{ film.title }} - Episode {{ film.episode_id }}</h2>
+  <h4>Director : {{ film.director }}</h4>
+  <h4>Producer : {{ film.producer }}</h4>
+  <h4>Release date : {{ film.release_date }}</h4>
+  <p>{{ film.opening_crawl }}</p>
+
+  <app-loading *ngIf="relationsLoading != 0"></app-loading>
+
+  <div class="relations" *ngIf="relationsLoading == 0">
+    <div class="relation">
+      <h4>Peoples</h4>
+      <app-people-summary
+        *ngFor="let e of peoples"
+        [people]="e"
+      ></app-people-summary>
+    </div>
+    <div class="relation">
+      <h4>Planets</h4>
+      <app-planet-summary
+        *ngFor="let e of planets"
+        [planet]="e"
+      ></app-planet-summary>
+    </div>
+    <div class="relation">
+      <h4>Species</h4>
+      <app-specie-summary
+        *ngFor="let e of species"
+        [specie]="e"
+      ></app-specie-summary>
+    </div>
+    <div class="relation">
+      <h4>Starship</h4>
+      <app-starship-summary
+        *ngFor="let e of starship"
+        [starship]="e"
+      ></app-starship-summary>
+    </div>
+    <div class="relation">
+      <h4>Vehicles</h4>
+      <app-vehicle-summary
+        *ngFor="let e of vehicles"
+        [vehicle]="e"
+      ></app-vehicle-summary>
+    </div>
+  </div>
+</div>

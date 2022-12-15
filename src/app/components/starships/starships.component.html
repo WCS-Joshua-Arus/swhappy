@@ -1,0 +1,11 @@
+<app-loading *ngIf="starships == undefined"></app-loading>
+
+<div>
+  <div
+    *ngFor="let starship of starships"
+    class="bloc"
+    routerLink="{{ getId(starship.url) }}"
+  >
+    <h2>{{ starship.name }}</h2>
+  </div>
+</div>
