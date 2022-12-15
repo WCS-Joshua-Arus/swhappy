@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SwhappyService } from 'src/app/services/swhappy.service';
 
 @Component({
   selector: 'app-index',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndexComponent implements OnInit {
 
-  constructor() { }
+  loading = true;
+
+  constructor(private api : SwhappyService) { }
 
   ngOnInit() {
+    this.api.loadingStatus.subscribe((status) => this.loading = status);
   }
 
 }

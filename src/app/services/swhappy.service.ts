@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Film } from '../models/film.model';
 import { People } from '../models/people.model';
 import { Planet } from '../models/planet.model';
@@ -8,7 +8,6 @@ import { Specie } from '../models/specie.model';
 import { Starship } from '../models/starship.model';
 import { SwapiListResponse } from '../models/swapi-list-response.model';
 import { Vehicle } from '../models/vehicle.model';
-import { SwapiService } from './swapi.service';
 import { FilmsService } from './films.service';
 import { PeopleService } from './peoples.service';
 import { PlanetService } from './planets.service';
@@ -20,6 +19,12 @@ import { VehiclesService } from './vehicles.service';
   providedIn: 'root'
 })
 export class SwhappyService {
+
+  private emittedCall = 0;
+  private receivedCall = 0;
+
+  private messageSource = new BehaviorSubject<boolean>(true);
+  loadingStatus = this.messageSource.asObservable();
 
   constructor(
     private filmsService: FilmsService,
@@ -87,5 +92,20 @@ export class SwhappyService {
         return part;
     }
     return "";
+  }
+
+  increaseCallCount()
+  {
+    this.emittedCall++;
+  }
+
+  decreaseCallCount()
+  {
+    this.receivedCall++;
+
+    if (this.emittedCall == this.receivedCall)
+    {
+      this.messageSource.next(false);
+    }
   }
 }
