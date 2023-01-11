@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { People } from 'src/app/models/people.model';
 import { SwhappyService } from 'src/app/services/swhappy.service';
+import { PaginatedComponent } from '../paginated-component';
 
 @Component({
   selector: 'app-peoples',
@@ -10,18 +11,13 @@ import { SwhappyService } from 'src/app/services/swhappy.service';
     class: "expand"
   }
 })
-export class PeoplesComponent implements OnInit {
+export class PeoplesComponent extends PaginatedComponent<People> implements OnInit {
 
-  peoples?: People[];
-
-  constructor(private api: SwhappyService) { }
-
-  ngOnInit() {
-    this.api.getPeoples().subscribe((response) => this.peoples = response.results);
+  constructor(private api: SwhappyService) {
+    super(api, api.getPeoples);
   }
 
-  getId(url: string)
-  {
-    return this.api.extractIdFromUrl(url);
+  ngOnInit() {
+    this.callApi(this.pagination.pageNum);
   }
 }

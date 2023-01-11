@@ -15,8 +15,8 @@ export class FilmsService extends SwapiService<Film> {
     this.routePath = "films";
   }
 
-  getFilms(): Observable<SwapiListResponse<Film>> {
-    return super.get();
+  getFilms(pageNum: string): Observable<SwapiListResponse<Film>> {
+    return super.get(pageNum);
   }
 
   getFilmById(id: string): Observable<Film> {

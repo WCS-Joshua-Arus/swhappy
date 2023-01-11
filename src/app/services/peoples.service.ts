@@ -14,8 +14,8 @@ export class PeopleService extends SwapiService<People> {
     super(client);
     this.routePath = "people";
   }
-  getPeoples(): Observable<SwapiListResponse<People>> {
-    return this.get();
+  getPeoples(pageNum: string): Observable<SwapiListResponse<People>> {
+    return this.get(pageNum);
   }
 
   getPeopleById(id: string): Observable<People> {

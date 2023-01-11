@@ -24,6 +24,7 @@ import { PeopleSummaryComponent } from './components/peoples/people-summary/peop
 import { PlanetSummaryComponent } from './components/planets/planet-summary/planet-summary.component';
 import { StarshipSummaryComponent } from './components/starships/starship-summary/starship-summary.component';
 import { VehicleSummaryComponent } from './components/vehicles/vehicle-summary/vehicle-summary.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { VehicleSummaryComponent } from './components/vehicles/vehicle-summary/v
       StarshipSummaryComponent,
       VehicleDetailsComponent,
       VehiclesComponent,
-      VehicleSummaryComponent
+      VehicleSummaryComponent,
+      PaginationComponent
    ],
   imports: [
     BrowserModule,

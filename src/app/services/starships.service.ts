@@ -15,8 +15,8 @@ export class StarshipsService  extends SwapiService<Starship> {
     this.routePath = "starships";
   }
 
-  getStarships(): Observable<SwapiListResponse<Starship>> {
-    return this.get();
+  getStarships(pageNum: string): Observable<SwapiListResponse<Starship>> {
+    return this.get(pageNum);
   }
 
   getStarshipById(id: string): Observable<Starship> {

@@ -1,11 +1,16 @@
-<app-loading *ngIf="peoples == undefined"></app-loading>
+<app-loading *ngIf="loading"></app-loading>
 
-<div>
+<div *ngIf="!loading">
   <div
-    *ngFor="let people of peoples"
+    *ngFor="let elem of list"
     class="bloc"
-    routerLink="{{ getId(people.url) }}"
+    routerLink="{{ getId(elem.url) }}"
   >
-    <h2>{{ people.name }}</h2>
+    <h2>{{ elem.name }}</h2>
   </div>
+
+  <app-pagination
+    (changePage)="callApi($event)"
+    [pagination]="pagination"
+  ></app-pagination>
 </div>

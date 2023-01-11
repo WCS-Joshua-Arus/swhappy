@@ -1,0 +1,5 @@
+<div class="row" *ngIf="pagination?.previousPage || pagination?.nextPage">
+  <button *ngIf="pagination?.previousPage" (click)="previousPage()"><</button>
+  <p>{{pagination?.pageNum}}</p>
+  <button *ngIf="pagination?.nextPage" (click)="nextPage()">></button>
+</div>

@@ -1,11 +1,16 @@
-<app-loading *ngIf="starships == undefined"></app-loading>
+<app-loading *ngIf="loading"></app-loading>
 
-<div>
+<div *ngIf="!loading">
   <div
-    *ngFor="let starship of starships"
+    *ngFor="let elem of list"
     class="bloc"
-    routerLink="{{ getId(starship.url) }}"
+    routerLink="{{ getId(elem.url) }}"
   >
-    <h2>{{ starship.name }}</h2>
+    <h2>{{ elem.name }}</h2>
   </div>
+
+  <app-pagination
+    (changePage)="callApi($event)"
+    [pagination]="pagination"
+  ></app-pagination>
 </div>

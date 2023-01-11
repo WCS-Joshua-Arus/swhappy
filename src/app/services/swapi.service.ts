@@ -11,7 +11,7 @@ import { SwapiListResponse } from '../models/swapi-list-response.model';
 export class SwapiService<T> {
 
   cache: any = {};
-  cacheAll? : Observable<SwapiListResponse<T>>;
+  cacheAll : any = {};
   routePath? : string;
 
   constructor(
@@ -19,12 +19,14 @@ export class SwapiService<T> {
   ) {
   }
 
-  get(): Observable<SwapiListResponse<T>> {
-    if (!this.cacheAll)
-      this.cacheAll =  this.http
-      .get<SwapiListResponse<T>>(environment.urls.apiBaseUrl + this.routePath?.toLowerCase())
+  get(pageNum : string): Observable<SwapiListResponse<T>> {
+    if (!this.cacheAll[pageNum])
+    {
+      this.cacheAll[pageNum] =  this.http
+      .get<SwapiListResponse<T>>(environment.urls.apiBaseUrl + this.routePath?.toLowerCase() + "?page=" + pageNum)
       .pipe(shareReplay(1),);
-    return this.cacheAll;
+    }
+    return this.cacheAll[pageNum];
   }
 
   getById(id: string): Observable<T> {

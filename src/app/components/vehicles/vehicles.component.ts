@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Vehicle } from 'src/app/models/vehicle.model';
 import { SwhappyService } from 'src/app/services/swhappy.service';
+import { PaginatedComponent } from '../paginated-component';
 
 @Component({
   selector: 'app-vehicles',
@@ -10,17 +11,13 @@ import { SwhappyService } from 'src/app/services/swhappy.service';
     class: "expand"
   }
 })
-export class VehiclesComponent implements OnInit {
-  vehicles?: Vehicle[];
+export class VehiclesComponent extends PaginatedComponent<Vehicle> implements OnInit {
 
-  constructor(private api: SwhappyService) { }
-
-  ngOnInit() {
-    this.api.getVehicles().subscribe((response) => this.vehicles = response.results);
+  constructor(private api: SwhappyService) {
+    super(api, api.getVehicles);
   }
 
-  getId(url: string)
-  {
-    return this.api.extractIdFromUrl(url);
+  ngOnInit() {
+    this.callApi(this.pagination.pageNum);
   }
 }

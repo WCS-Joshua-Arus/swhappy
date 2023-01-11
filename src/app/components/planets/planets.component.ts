@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Planet } from 'src/app/models/planet.model';
 import { SwhappyService } from 'src/app/services/swhappy.service';
+import { PaginatedComponent } from '../paginated-component';
 
 @Component({
   selector: 'app-planets',
@@ -10,18 +11,13 @@ import { SwhappyService } from 'src/app/services/swhappy.service';
     class: "expand"
   }
 })
-export class PlanetsComponent implements OnInit {
+export class PlanetsComponent extends PaginatedComponent<Planet> implements OnInit {
 
-  planets? : Planet[];
-
-  constructor(private api: SwhappyService) { }
+  constructor(private api: SwhappyService) {
+    super(api, api.getPlanets);
+   }
 
   ngOnInit() {
-    this.api.getPlanets().subscribe((response) => this.planets = response.results);
-  }
-
-  getId(url: string)
-  {
-    return this.api.extractIdFromUrl(url);
+    this.callApi(this.pagination.pageNum);
   }
 }

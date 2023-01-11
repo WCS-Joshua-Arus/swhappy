@@ -15,8 +15,8 @@ export class VehiclesService  extends SwapiService<Vehicle> {
     this.routePath = "vehicles";
   }
 
-  getVehicles(): Observable<SwapiListResponse<Vehicle>> {
-    return this.get();
+  getVehicles(pageNum: string): Observable<SwapiListResponse<Vehicle>> {
+    return this.get(pageNum);
   }
 
   getVehicleById(id: string): Observable<Vehicle> {

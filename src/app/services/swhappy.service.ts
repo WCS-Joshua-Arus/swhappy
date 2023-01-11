@@ -33,50 +33,51 @@ export class SwhappyService {
     private speciesService: SpeciesService,
     private starshipsService: StarshipsService,
     private vehiclesService: VehiclesService
-  ) { }
+  ) {
+  }
 
-  getFilms(): Observable<SwapiListResponse<Film>> {
-    return this.filmsService.getFilms();
+  getFilms(pageNum: string = '1'): Observable<SwapiListResponse<Film>> {
+    return this.filmsService.getFilms(pageNum);
   }
 
   getFilmById(id: string): Observable<Film> {
     return this.filmsService.getFilmById(id);
   }
 
-  getPeoples(): Observable<SwapiListResponse<People>> {
-    return this.peopleService.getPeoples();
+  getPeoples(pageNum: string = '1'): Observable<SwapiListResponse<People>> {
+    return this.peopleService.getPeoples(pageNum);
   }
 
   getPeopleById(id: string): Observable<People> {
     return this.peopleService.getPeopleById(id);
   }
 
-  getPlanets(): Observable<SwapiListResponse<Planet>> {
-    return this.planetService.getPlanets();
+  getPlanets(pageNum: string = '1'): Observable<SwapiListResponse<Planet>> {
+    return this.planetService.getPlanets(pageNum);
   }
 
   getPlanetById(id: string): Observable<Planet> {
     return this.planetService.getPlanetById(id);
   }
 
-  getSpecies(): Observable<SwapiListResponse<Specie>> {
-    return this.speciesService.getSpecies();
+  getSpecies(pageNum: string = '1'): Observable<SwapiListResponse<Specie>> {
+    return this.speciesService.getSpecies(pageNum);
   }
 
   getSpecieById(id: string): Observable<Specie> {
     return this.speciesService.getSpecieById(id);
   }
 
-  getStarships(): Observable<SwapiListResponse<Starship>> {
-    return this.starshipsService.getStarships();
+  getStarships(pageNum: string = '1'): Observable<SwapiListResponse<Starship>> {
+    return this.starshipsService.getStarships(pageNum);
   }
 
   getStarshipById(id: string): Observable<Starship> {
     return this.starshipsService.getStarshipById(id);
   }
 
-  getVehicles(): Observable<SwapiListResponse<Vehicle>> {
-    return this.vehiclesService.getVehicles();
+  getVehicles(pageNum: string = '1'): Observable<SwapiListResponse<Vehicle>> {
+    return this.vehiclesService.getVehicles(pageNum);
   }
 
   getVehicleById(id: string): Observable<Vehicle> {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Starship } from 'src/app/models/starship.model';
 import { SwhappyService } from 'src/app/services/swhappy.service';
+import { PaginatedComponent } from '../paginated-component';
 
 @Component({
   selector: 'app-starships',
@@ -10,17 +11,13 @@ import { SwhappyService } from 'src/app/services/swhappy.service';
     class: "expand"
   }
 })
-export class StarshipsComponent implements OnInit {
-  starships?: Starship[];
+export class StarshipsComponent extends PaginatedComponent<Starship> implements OnInit {
 
-  constructor(private api: SwhappyService) { }
-
-  ngOnInit() {
-    this.api.getStarships().subscribe((response) => this.starships = response.results);
+  constructor(private api: SwhappyService) {
+    super(api, api.getStarships);
   }
 
-  getId(url: string)
-  {
-    return this.api.extractIdFromUrl(url);
+  ngOnInit() {
+    this.callApi(this.pagination.pageNum);
   }
 }

@@ -1,8 +1,8 @@
-<app-loading *ngIf="films == undefined"></app-loading>
+<app-loading *ngIf="loading"></app-loading>
 
-<div class="films">
+<div class="films" *ngIf="!loading">
   <div
-    *ngFor="let film of films"
+    *ngFor="let film of list"
     class="bloc spaced"
     routerLink="{{ getId(film.url) }}"
   >
@@ -12,4 +12,9 @@
     <h4>Release date : {{ film.release_date }}</h4>
     <p>{{ film.opening_crawl }}</p>
   </div>
+
+  <app-pagination
+    (changePage)="callApi($event)"
+    [pagination]="pagination"
+  ></app-pagination>
 </div>

@@ -15,8 +15,8 @@ export class SpeciesService  extends SwapiService<Specie> {
     this.routePath = "species";
   }
 
-  getSpecies(): Observable<SwapiListResponse<Specie>> {
-    return this.get();
+  getSpecies(pageNum: string): Observable<SwapiListResponse<Specie>> {
+    return this.get(pageNum);
   }
 
   getSpecieById(id: string): Observable<Specie> {

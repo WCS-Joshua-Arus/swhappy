@@ -11,8 +11,13 @@ export class AppComponent {
 
   constructor(private api : SwhappyService)
   {
+    // this.loadAll();
+  }
+
+  loadAll()
+  {
     this.api.increaseCallCount();
-    this.api.getFilms().subscribe((response) => {
+    this.api.getFilms('1').subscribe((response) => {
       response.results.forEach((element) => {
         this.api.increaseCallCount();
         this.api.getFilmById(this.api.extractIdFromUrl(element.url)).subscribe(() => this.api.decreaseCallCount());
@@ -21,7 +26,7 @@ export class AppComponent {
     });
 
     this.api.increaseCallCount();
-    this.api.getPeoples().subscribe((response) => {
+    this.api.getPeoples('1').subscribe((response) => {
       response.results.forEach((element) => {
         this.api.increaseCallCount();
         this.api.getPeopleById(this.api.extractIdFromUrl(element.url)).subscribe(() => this.api.decreaseCallCount());
@@ -30,7 +35,7 @@ export class AppComponent {
     });
 
     this.api.increaseCallCount();
-    this.api.getPlanets().subscribe((response) => {
+    this.api.getPlanets('1').subscribe((response) => {
       response.results.forEach((element) => {
         this.api.increaseCallCount();
         this.api.getPlanetById(this.api.extractIdFromUrl(element.url)).subscribe(() => this.api.decreaseCallCount());
@@ -39,7 +44,7 @@ export class AppComponent {
     });
 
     this.api.increaseCallCount();
-    this.api.getSpecies().subscribe((response) => {
+    this.api.getSpecies('1').subscribe((response) => {
       response.results.forEach((element) => {
         this.api.increaseCallCount();
         this.api.getSpecieById(this.api.extractIdFromUrl(element.url)).subscribe(() => this.api.decreaseCallCount());
@@ -48,7 +53,7 @@ export class AppComponent {
     });
 
     this.api.increaseCallCount();
-    this.api.getStarships().subscribe((response) => {
+    this.api.getStarships('1').subscribe((response) => {
       response.results.forEach((element) => {
         this.api.increaseCallCount();
         this.api.getStarshipById(this.api.extractIdFromUrl(element.url)).subscribe(() => this.api.decreaseCallCount());
@@ -57,14 +62,13 @@ export class AppComponent {
     });
 
     this.api.increaseCallCount();
-    this.api.getVehicles().subscribe((response) => {
+    this.api.getVehicles('1').subscribe((response) => {
       response.results.forEach((element) => {
         this.api.increaseCallCount();
         this.api.getVehicleById(this.api.extractIdFromUrl(element.url)).subscribe(() => this.api.decreaseCallCount());
       });
       this.api.decreaseCallCount();
     });
-
   }
 
   displaySmallNav = false;

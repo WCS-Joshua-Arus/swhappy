@@ -15,8 +15,8 @@ export class PlanetService  extends SwapiService<Planet> {
     this.routePath = "planets";
   }
 
-  getPlanets(): Observable<SwapiListResponse<Planet>> {
-    return this.get();
+  getPlanets(pageNum: string): Observable<SwapiListResponse<Planet>> {
+    return this.get(pageNum);
   }
 
   getPlanetById(id: string): Observable<Planet> {
