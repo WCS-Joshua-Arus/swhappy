@@ -41,21 +41,21 @@ export class StarshipDetailsComponent implements OnInit {
         starship.films.forEach((url) => {
           this.relationsLoading++;
           let id = this.api.extractIdFromUrl(url);
-          this.api.getFilmById(id).subscribe(
-            (entity) => this.films.push(entity),
-            (error) => {},
-            () => {this.relationsLoading--}
-          );
+          this.api.getFilmById(id).subscribe({
+            next: (entity) => {this.films.push(entity); this.relationsLoading--},
+            error: (error) => {this.relationsLoading--},
+            complete: () => {}
+          });
         });
 
         starship.pilots.forEach((url) => {
           this.relationsLoading++;
           let id = this.api.extractIdFromUrl(url);
-          this.api.getPeopleById(id).subscribe(
-            (entity) => this.peoples.push(entity),
-            (error) => {},
-            () => {this.relationsLoading--}
-          );
+          this.api.getPeopleById(id).subscribe({
+            next: (entity) => {this.peoples.push(entity); this.relationsLoading--},
+            error: (error) => {this.relationsLoading--},
+            complete: () => {}
+          });
         });
 
       });

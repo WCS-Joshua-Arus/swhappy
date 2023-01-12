@@ -46,51 +46,51 @@ export class FilmDetailsComponent implements OnInit {
         film.characters.forEach((url) => {
           this.relationsLoading++;
           let id = this.api.extractIdFromUrl(url);
-          this.api.getPeopleById(id).subscribe(
-            (entity) => this.peoples.push(entity),
-            (error) => {},
-            () => {this.relationsLoading--}
-          );
+          this.api.getPeopleById(id).subscribe({
+            next: (entity) => {this.peoples.push(entity); this.relationsLoading--},
+            error: (error) => {this.relationsLoading--},
+            complete: () => {}
+          });
         });
 
         film.planets.forEach((url) => {
           this.relationsLoading++;
           let id = this.api.extractIdFromUrl(url);
-          this.api.getPlanetById(id).subscribe(
-            (entity) => this.planets.push(entity),
-            (error) => {},
-            () => {this.relationsLoading--}
-          );
+          this.api.getPlanetById(id).subscribe({
+            next: (entity) => {this.planets.push(entity); this.relationsLoading--},
+            error: (error) => {this.relationsLoading--},
+            complete: () => {}
+          });
         });
 
         film.species.forEach((url) => {
           this.relationsLoading++;
           let id = this.api.extractIdFromUrl(url);
-          this.api.getSpecieById(id).subscribe(
-            (entity) => this.species.push(entity),
-            (error) => {},
-            () => {this.relationsLoading--}
-          );
+          this.api.getSpecieById(id).subscribe({
+            next: (entity) => {this.species.push(entity); this.relationsLoading--},
+            error: (error) => {this.relationsLoading--},
+            complete: () => {}
+          });
         });
 
         film.starships.forEach((url) => {
           this.relationsLoading++;
           let id = this.api.extractIdFromUrl(url);
-          this.api.getStarshipById(id).subscribe(
-            (entity) => this.starship.push(entity),
-            (error) => {},
-            () => {this.relationsLoading--}
-          );
+          this.api.getStarshipById(id).subscribe({
+            next: (entity) => {this.starship.push(entity); this.relationsLoading--},
+            error: (error) => {this.relationsLoading--},
+            complete: () => {}
+          });
         });
 
         film.vehicles.forEach((url) => {
           this.relationsLoading++;
           let id = this.api.extractIdFromUrl(url);
-          this.api.getVehicleById(id).subscribe(
-            (entity) => this.vehicles.push(entity),
-            (error) => {},
-            () => {this.relationsLoading--}
-          );
+          this.api.getVehicleById(id).subscribe({
+            next: (entity) => {this.vehicles.push(entity); this.relationsLoading--},
+            error: (error) => {this.relationsLoading--},
+            complete: () => {}
+          });
         });
 
       });

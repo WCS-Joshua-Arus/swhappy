@@ -43,21 +43,21 @@ export class SpecieDetailsComponent implements OnInit {
         specie.films.forEach((url) => {
           this.relationsLoading++;
           let id = this.service.extractIdFromUrl(url);
-          this.service.getFilmById(id).subscribe(
-            (entity) => this.films.push(entity),
-            (error) => {},
-            () => {this.relationsLoading--}
-          );
+          this.service.getFilmById(id).subscribe({
+            next: (entity) => {this.films.push(entity); this.relationsLoading--},
+            error: (error) => {this.relationsLoading--},
+            complete: () => {}
+          });
         });
 
         specie.people.forEach((url) => {
           this.relationsLoading++;
           let id = this.service.extractIdFromUrl(url);
-          this.service.getPeopleById(id).subscribe(
-            (entity) => this.peoples.push(entity),
-            (error) => {},
-            () => {this.relationsLoading--}
-          );
+          this.service.getPeopleById(id).subscribe({
+            next: (entity) => {this.peoples.push(entity); this.relationsLoading--},
+            error: (error) => {this.relationsLoading--},
+            complete: () => {}
+          });
         });
       });
     });

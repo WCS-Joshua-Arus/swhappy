@@ -53,41 +53,41 @@ export class PeopleDetailsComponent implements OnInit {
         people.films.forEach((url) => {
           this.relationsLoading++;
           let id = this.api.extractIdFromUrl(url);
-          this.api.getFilmById(id).subscribe(
-            (entity) => this.films.push(entity),
-            (error) => {},
-            () => {this.relationsLoading--}
-          );
+          this.api.getFilmById(id).subscribe({
+            next: (entity) => {this.films.push(entity); this.relationsLoading--},
+            error: (error) => {this.relationsLoading--},
+            complete: () => {}
+          });
         });
 
         people.species.forEach((url) => {
           this.relationsLoading++;
           let id = this.api.extractIdFromUrl(url);
-          this.api.getSpecieById(id).subscribe(
-            (entity) => this.species.push(entity),
-            (error) => {},
-            () => {this.relationsLoading--}
-          );
+          this.api.getSpecieById(id).subscribe({
+            next: (entity) => {this.species.push(entity); this.relationsLoading--},
+            error: (error) => {this.relationsLoading--},
+            complete: () => {}
+          });
         });
 
         people.starships.forEach((url) => {
           this.relationsLoading++;
           let id = this.api.extractIdFromUrl(url);
-          this.api.getStarshipById(id).subscribe(
-            (entity) => this.starship.push(entity),
-            (error) => {},
-            () => {this.relationsLoading--}
-          );
+          this.api.getStarshipById(id).subscribe({
+            next: (entity) => {this.starship.push(entity); this.relationsLoading--},
+            error: (error) => {this.relationsLoading--},
+            complete: () => {}
+          });
         });
 
         people.vehicles.forEach((url) => {
           this.relationsLoading++;
           let id = this.api.extractIdFromUrl(url);
-          this.api.getVehicleById(id).subscribe(
-            (entity) => this.vehicles.push(entity),
-            (error) => {},
-            () => {this.relationsLoading--}
-          );
+          this.api.getVehicleById(id).subscribe({
+            next: (entity) => {this.vehicles.push(entity); this.relationsLoading--},
+            error: (error) => {this.relationsLoading--},
+            complete: () => {}
+          });
         });
 
       });
