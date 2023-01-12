@@ -9,5 +9,6 @@ export const environment = {
         starship: "starships",
         vehicles: "vehicle"
       }
-    }
+    },
+    apiTimeout : undefined // nb of millisecond or undefined for no timeout
 }
